@@ -27,7 +27,7 @@ Como dito anteriormente o algoritmo recebe um conjunto de pontos brancos, que re
 ![](pontos1.jpg)
 
 
-??? Exercício
+??? CHECKPOINT
 Quantas retas podem passar por cada um dos pontos?
 ::: Gabarito
 Se sua resposta foi $\infty$ retas, você acertou!
@@ -36,13 +36,18 @@ Se sua resposta foi $\infty$ retas, você acertou!
 :::
 ???
 
-Como matematicamente podemos expressar todas as retas que passam pelo ponto $(a,b)$?
-Concorda que a equação $y = a*x + b$ cumpre esse papel?
+Essas infinitas retas tem algo em comum? Como descobrimos isso?
+
+Primeiramente concorda que podemos reprsentar as infintas retas coma equação $b = m*a + n$ cumpre?. Sendo que cada $m$ e cada $n$ representa uma das retas.
+Generalizando, para qualquer ponto $(x,y)$, a equação que define uma reta que passa por esse ponto seria $y = m*x + n$.
+
+Resumindo, na equação $y = m*x + n$, os elementos que definem a reta são:
+* O coeficiente angular $m$;
+* O coeficiente linear $n$;
+
+Então, para o nosso objetivo de descobrir semelhanças entre as retas, podemos usar esse parâmetros para colocá-las em um plano. Como seria isso?
 
 Mas nós não estamos em interessados em descobrir quantas retas passam por esse ponto, e sim **quantos pontos passam por uma determinada reta**. Isso porque quanto mais pontos, daqueles que recebemos como entrada do algoritmo, passarem por uma determinada reta, mais provável dela de fato existir na imagem. Talvez tenha ficado muito confuso, vamos tentar representar a situação visualmente para que fique mais claro!
-
-
-
 Para criar um parágrafo, basta escrever um texto contínuo, sem pular linhas.
 
 Você também pode criar
