@@ -48,6 +48,34 @@ Resumindo, na equação $y = m*x + n$, os elementos que definem a reta são:
 Então, para o nosso objetivo de descobrir semelhanças entre as retas, podemos usar esse parâmetros para colocá-las em um plano. Como seria isso?
 
 Mas nós não estamos em interessados em descobrir quantas retas passam por esse ponto, e sim **quantos pontos passam por uma determinada reta**. Isso porque quanto mais pontos, daqueles que recebemos como entrada do algoritmo, passarem por uma determinada reta, mais provável dela de fato existir na imagem. Talvez tenha ficado muito confuso, vamos tentar representar a situação visualmente para que fique mais claro!
+
+*imagem aqui*
+
+??? CHECKPOINT
+Para tentarmos identificar quantos pontos passam por uma reta precisamos visualiza-la em outro plano. Sabendo que possuímos um ponto (a, b)presente no plano $xy$ e que uma de suas infinitas retas é representada pela equação $y = mx + n$, qual seria a representação desse ponto em um plano secundário com eixos $m$ e $n$?
+*colocar fotinhoooooo*
+
+**Dica:** O que todos os pontos de uma reta tem em comum?
+::: Gabarito
+Resposta *colocar fotinho do segundo plano *
+
+:::
+???
+
+Sim, eu sei... Como é possível um ponto virar uma reta? Pode ser um pouco difícil visualizar esse conceito, mas talvez tentando com dois pontos pode ser que fique mais claro. 
+
+??? CHECKPOINT
+Sabendo que possuímos dois pontos (a, b) e (c, d) presentes no plano $xy$ e que uma das infinitas retas do primeiro ponto seja representada pela equação $y = mx + n$ e uma das retas infinitas do segundo ponto seja representada por $y = tx + s$, qual seria a representação desses pontos em um plano secundário com eixos $m$ e $n$?
+*colocar fotinhoooooo*
+
+::: Gabarito
+Resposta *colocar fotinho do segundo plano *
+
+:::
+???
+
+Essas retas presentes nesse plano secundário possuem uma intersecção, este ponto 
+
 Para criar um parágrafo, basta escrever um texto contínuo, sem pular linhas.
 
 Você também pode criar
