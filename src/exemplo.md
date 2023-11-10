@@ -11,7 +11,9 @@ Pense que temos um jogo de sudoku do jornal em mãos e estamos com preguiça de 
 
 ![](sudoku_limpo.jpg)
 
-O primeiro passo é o processamento da imagem, sabendo o limite de cada célula, para que possamos criar uma lógica em cima. Para isso, temos que detectar as linhas da imagem e posteriormente identificar seus cruzamentos. Essa etapa da identificação de linhas é feita pela Transformada de Hough! Esse algoritmo também é capaz de identificar circunfêrencias e elipses, mas iremos focar na identificação de retas. Um arquivo .png, por exemplo, não é uma entrada válida para o algoritmo, por isso ela passa por uma máscara (para saber mais acesse ), que a transforma em uma imagem binária, ou seja um conjunto de pontos brancos. No caso da foto do sudoku, a imagem que representa esse conjunto seria essa aqui:
+O primeiro passo é o processamento da imagem, sabendo o limite de cada célula, para que possamos criar uma lógica em cima. Para isso, temos que detectar as linhas da imagem e posteriormente identificar seus cruzamentos. Essa etapa da identificação de linhas é feita pela Transformada de Hough! Esse algoritmo também é capaz de identificar circunfêrencias e elipses, mas iremos focar na identificação de retas.
+
+Um arquivo .png, por exemplo, não é uma entrada válida para o algoritmo, por isso ela passa por uma máscara, que a transforma em uma [imagem binária](https://embarcados.com.br/imagens-binarias/), ou seja, uma imagem em preto e branco. No caso da foto do sudoku, a imagem que representa esse conjunto seria essa aqui:
 
 ![](sudoku_preto_e_branco.png)
 
@@ -28,7 +30,7 @@ Como dito anteriormente o algoritmo recebe um conjunto de pontos brancos, que re
 
 
 ??? CHECKPOINT
-Quantas retas podem passar por cada um dos pontos?
+Quantas retas podem passar por um ponto?
 ::: Gabarito
 Se sua resposta foi $\infty$ retas, você acertou!
 
@@ -36,115 +38,28 @@ Se sua resposta foi $\infty$ retas, você acertou!
 :::
 ???
 
-Essas infinitas retas tem algo em comum? Como descobrimos isso?
+Primeiramente concorda que podemos reprsentar as infintas retas com a equação $y = m*x + n$? Sendo que teremos ifinitos pares $m$ e $n$, 1 para cada reta.
 
-Primeiramente concorda que podemos reprsentar as infintas retas coma equação $b = m*a + n$ cumpre?. Sendo que cada $m$ e cada $n$ representa uma das retas.
-Generalizando, para qualquer ponto $(x,y)$, a equação que define uma reta que passa por esse ponto seria $y = m*x + n$.
+Assim, notamos que com apenas dois parametros (m, n) podemos representar uma reta. Para entender melhor o algoritimo vamos comparar a representação de uma reta no modo tradicional vs no 'modo novo'.
 
-Resumindo, na equação $y = m*x + n$, os elementos que definem a reta são:
-* O coeficiente angular $m$;
-* O coeficiente linear $n$;
+Aqui temos um plano cartesiano com um ponto, passando a animação vamos várias retas que passam por esse ponto e suas respectivas equações.
 
-Então, para o nosso objetivo de descobrir semelhanças entre as retas, podemos usar esse parâmetros para colocá-las em um plano. Como seria isso?
+:ani
 
-Mas nós não estamos em interessados em descobrir quantas retas passam por esse ponto, e sim **quantos pontos passam por uma determinada reta**. Isso porque quanto mais pontos, daqueles que recebemos como entrada do algoritmo, passarem por uma determinada reta, mais provável dela de fato existir na imagem. Talvez tenha ficado muito confuso, vamos tentar representar a situação visualmente para que fique mais claro!
+Agora, vamos comparar o plano cartesiano a esquerda vs o plano da transformada de hough a direita.
+
+:ani2
+
+note que cada reta vira um ponto na transformada, além disso, todas as retas que passam por um mesmo ponto estão alinhados e se conectados formariam uma reta. Por isso o ponto pode ser associado à essa nova reta formada, o que transforma as retas em pontos e pontos em retas.
 
 *imagem aqui*
 
 ??? CHECKPOINT
-Para tentarmos identificar quantos pontos passam por uma reta precisamos visualiza-la em outro plano. Sabendo que possuímos um ponto (a, b)presente no plano $xy$ e que uma de suas infinitas retas é representada pela equação $y = mx + n$, qual seria a representação desse ponto em um plano secundário com eixos $m$ e $n$?
-*colocar fotinhoooooo*
+Desenhe em uma folha o que acontecerá com a representação de varios pontos que passam por uma mesma reta
 
-**Dica:** O que todos os pontos de uma reta tem em comum?
+**Dica:** Lembres-se que todos os pontos viram retas e todas as retas viram pontos.
 ::: Gabarito
 Resposta *colocar fotinho do segundo plano *
 
 :::
-???
-
-Sim, eu sei... Como é possível um ponto virar uma reta? Pode ser um pouco difícil visualizar esse conceito, mas talvez tentando com dois pontos pode ser que fique mais claro. 
-
-??? CHECKPOINT
-Sabendo que possuímos dois pontos (a, b) e (c, d) presentes no plano $xy$ e que uma das infinitas retas do primeiro ponto seja representada pela equação $y = mx + n$ e uma das retas infinitas do segundo ponto seja representada por $y = tx + s$, qual seria a representação desses pontos em um plano secundário com eixos $m$ e $n$?
-*colocar fotinhoooooo*
-
-::: Gabarito
-Resposta *colocar fotinho do segundo plano *
-
-:::
-???
-
-Essas retas presentes nesse plano secundário possuem uma intersecção, este ponto 
-
-Para criar um parágrafo, basta escrever um texto contínuo, sem pular linhas.
-
-Você também pode criar
-
-1. listas;
-
-2. ordenadas,
-
-assim como
-
-* listas;
-
-* não-ordenadas
-
-e imagens. Lembre que todas as imagens devem estar em uma subpasta *img*.
-
-![](logo.png)
-
-Para tabelas, usa-se a [notação do
-MultiMarkdown](https://fletcher.github.io/MultiMarkdown-6/syntax/tables.html),
-que é muito flexível. Vale a pena abrir esse link para saber todas as
-possibilidades.
-
-| coluna a | coluna b |
-|----------|----------|
-| 1        | 2        |
-
-Ao longo de um texto, você pode usar *itálico*, **negrito**, {red}(vermelho) e
-[[tecla]]. Também pode usar uma equação LaTeX: $f(n) \leq g(n)$. Se for muito
-grande, você pode isolá-la em um parágrafo.
-
-$$\lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} \leq 1$$
-
-Para inserir uma animação, use `md :` seguido do nome de uma pasta onde as
-imagens estão. Essa pasta também deve estar em *img*.
-
-:bubble
-
-Você também pode inserir código, inclusive especificando a linguagem.
-
-``` py
-def f():
-    print('hello world')
-```
-
-``` c
-void f() {
-    printf("hello world\n");
-}
-```
-
-Se não especificar nenhuma, o código fica com colorização de terminal.
-
-```
-hello world
-```
-
-
-!!! Aviso
-Este é um exemplo de aviso, entre `md !!!`.
-!!!
-
-
-??? Exercício
-
-Este é um exemplo de exercício, entre `md ???`.
-
-::: Gabarito
-Este é um exemplo de gabarito, entre `md :::`.
-:::
-
-???
+imagem que mostra varias retas (de pontos diferentes) passando pelo ponto de uma reta.
