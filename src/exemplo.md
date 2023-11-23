@@ -28,6 +28,41 @@ Como dito anteriormente, o algoritmo recebe um conjunto de pontos brancos, que r
 
 ![](pontos1.jpg)
 
+??? CHECKPOINT
+Quantas retas podem passar por **um** ponto?
+::: Gabarito
+Se sua resposta foi $\infty$ retas, você acertou!
+
+![](infinitasretas.png)
+:::
+???
+
+??? CHECKPOINT
+Quantas retas podem passar por **dois** pontos?
+::: Gabarito
+Se sua resposta foi uma reta, você acertou!
+*colocar imagem de uma reta entre dois pontos
+
+![](infinitasretas.png)
+:::
+???
+
+Associando isso a uma imagem binária com milhares de pixeis brancos, torna-se mais difícil garantir que todos esses espaços estão presentes a uma única reta. Em exemplos da vida real, muitas vezes esses pixeis não possuem uma distribuição uniforme a ponto de vincular cada pixel a uma reta específica, para isso seria necessário que o mundo fosse perfeitamente reto.
+
+??? CHECKPOINT
+Ao observar uma imagem como de uma rua:
+
+![rua](rua.png)
+
+O que faz uma faixa branca segmentada pertencer a uma reta de outra faixa branca segmentada? 
+
+**Dica:** Vide a linha vermelha direita na imagem, o que torna as faixas brancas semelhantes?
+
+::: Gabarito
+Uma reta possui em comum duas coisas: o coeficiente angular e o coeficiente linear!
+:::
+???
+
 Primeiramente, sabemos que a equação $y = mx + n$ é uma forma de representar uma reta. Assim, notamos que apenas dois parâmetros $(m, n)$ são suficientes para representar uma reta. Para entender melhor o algoritmo, vamos explorar um pouco melhor essa ideia, representar a reta apenas por $(m, n)$, ou seja, [transformar as coordenadas](https://www.ufrgs.br/lageo/calculos/coord_exp.html) de uma reta de $(x, y)$ para $(m, n)$.
 
 Aqui temos um plano cartesiano com um ponto. Passando a animação, vemos várias retas que passam por esse ponto e suas respectivas equações.
@@ -69,6 +104,7 @@ Notamos, pela imagem, que todas as retas que tínhamos representado no plano $xy
 
 Note que, além de cada reta ter virado um ponto, todos os pontos estão alinhados. Isso não é coincidência; se plotássemos todas as retas ($mn$) que passam pelo ponto preto, em $xy$, elas formariam uma reta em $mn$. Por isso, o ponto de $xy$ pode ser associado a uma reta em $mn$, ou seja, transformamos as retas em pontos e os pontos em retas.
 
+
 ??? Desafio
 Descubra a fórmula que transforma o ponto de $xy$ em sua reta de $mn$.
 
@@ -95,4 +131,49 @@ Descubra o padrão entre as retas $(m,n)$ que representam pontos colineares $(x,
 
 ::: Gabarito
 {red}(texto explicando o padrão e imagem mostrando)
+:::
+???
+
+Porém, ao associarmos essas ideias a exemplos da vida real é complexo garantir que um ponto pertença uma reta específica ou a uma reta diferente. Para isso, é necessário que exista uma espécie de "votação". Levando o termo "votação" ao pé da letra, isso é um processo que as pessoas (no nosso caso, o código) escolhem determinada coisa seguindo uma regra particular.
+
+
+??? CHECKPOINT
+Suponha que  você estivesse elaborando um esquema de detcção de linhas e que o que te foi fornecido fossem vários pontos, como na imagem
+
+![votacao](votacao/votacaop.png)
+
+Nesse momento, o que foi pedido é que seja descoberto a qual linha o ponto roxo (0.8, 2.0) possa pertencer. Sabendo que infinitas retas passam por esse ponto, qual seria o **seu** critério para definir qual reta de fato é uma reta presente na imagem?
+
+**Dica:** Lembre-se de olhar todo o contexto da imagem (pontos) e aquilo que torna uma reta "única"
+
+::: Gabarito
+Levando em consideração que todos os pontos estão presentes em um contexto conjunto, o ideal seria analisar quantos pontos passam por uma mesma reta, assim, quanto mais pontos passam, mais provável que aquele ponto pertença a uma reta
+:::
+???
+
+
+??? CHECKPOINT
+Levando em consideração a mesma imagem
+
+![votacao](votacao/votacaop.png)
+
+Se você pudesse traçar algumas retas ligando pelo menos dois pontos, qual você acreditaria ser "a reta correta", isto é, a reta que de fato existe?
+
+::: Gabarito
+
+A reta laranja!
+
+![votacao2](votacao/votacaog.png)
+
+*Nesse caso foram traçadas outras retas para exemplificação, mas a reta correta seria a laranja*
+:::
+???
+
+Nesse caso, para considerarmos que esse conjunto de pontos está presente em uma reta, foi necessário 5 pontos, porém isso pode ser maleável. Ai que entra a ideia de regra particular da votação (que foi comentado acima). Cabe a você decidir quantos pontos são suficientes para formar uma reta. Tudo isso vai depender da imagem de interesse, mas tendo uma regra de corte, torna-se possível a decisão. 
+
+Ao ter uma regra estabelecida (quantidade pontos, por exemplo), a transformada de hough faz uso de uma matriz de acumulação para manter registrado os votos para cada linha possível. Para cada ponto na imagem, um processo de votação é realizado, assim o algoritmo calcula todas as possíveis linhas que podem passar por esse ponto e adiciona um voto para cada uma dessas linhas na matriz de acumulação.
+
+Mesmo assim, temos um obstáculo, ao analisar retas completamente verticais (com x constante), não existe coeficientes, fórmula para prevermos determinadas coisas. Para isso, existem outros parâmetros para englobar todas possibilidades possíveis (FALAR DO RHO E THETA)
+
+
 
