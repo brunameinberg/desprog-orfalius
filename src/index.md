@@ -98,7 +98,7 @@ Agora, faça o mesmo para as outras retas. Qual ponto representaria cada uma del
 :::
 ???
 
-Notamos, pela imagem, que todas as retas que tínhamos representado no plano $xy$ ao serem passadas para $mn$, tornam-se pontos alinhados entre si. Isso não é coincidência; se representássemos as infinitas retas que passam pelo ponto preto em $mn$, elas formariam uma reta. Veja na animação.
+Notamos, pela imagem, que todas as retas que tínhamos representado no plano $xy$, ao serem passadas para $mn$, tornam-se pontos alinhados entre si. Veja na animação.
 
 :ponto_vira_reta
 
@@ -116,23 +116,21 @@ Dado um ponto $(x, y)$, sua reta será $n = -xm + y$.
 ???
 
 ??? CHECKPOINT
-Descubra enquação da reta equivalente de cada um dos pontos mostrados.
+Descubra a equação da reta equivalente de cada um dos pontos mostrados.
 
 ![](ex1.png)
 
 ::: Gabarito
 
-{red}(Por gabarito)
+![](ex2.png)
 :::
 ???
 
-??? Desafio
-Descubra o padrão entre as retas $(m,n)$ que representam pontos colineares $(x, y)$.
 
-::: Gabarito
-{red}(texto explicando o padrão e imagem mostrando)
-:::
-???
+Aqui entendemos porque realizamos a transformada, podemos definir que um ponto de $mn$ representa uma reta em $xy$ quando há muitas retas em $mn$ que passam por eles. No checkpoint acima, no plano $mn$, todas as 3 retas passam pelo ponto $(1,0)$.
+
+Como aplicar à matemática ao algoritmo
+---------
 
 Porém, ao associarmos essas ideias a exemplos da vida real é complexo garantir que um ponto pertença uma reta específica ou a uma reta diferente. Para isso, é necessário que exista uma espécie de "votação". Levando o termo "votação" ao pé da letra, isso é um processo que as pessoas (no nosso caso, o código) escolhem determinada coisa seguindo uma regra particular.
 
@@ -232,6 +230,8 @@ Quadrado 1
 :::
 ???
 
+Um ultimo detalhe matemático
+---------
 
 Mesmo assim, temos um obstáculo, ao analisar retas completamente verticais (com x constante), não existe coeficientes, fórmulas para prevermos determinadas coisas. Para isso, existem outros parâmetros para englobar todas possibilidades possíveis o $rho$ e o $theta$. Sua representação visual é:
 
