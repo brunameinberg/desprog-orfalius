@@ -28,7 +28,7 @@ Se sua resposta foi uma reta, você acertou!
 :::
 ???
 
-Sabemos que a equação $y = mx + n$ é uma forma de representar uma reta. Assim, notamos que apenas dois parâmetros $(m, n)$ são suficientes para representá-la, ou pelo menos para diferenciar uma uma de todas as outras. Para entender o algoritmo, vamos explorar um pouco melhor essa ideia, representar a reta apenas por $(m, n)$, ou seja, [transformar as coordenadas](https://www.ufrgs.br/lageo/calculos/coord_exp.html) de uma reta de $(x, y)$ para $(m, n)$.
+Sabemos que a equação $y = mx + n$ é uma forma de representar uma reta. Assim, notamos que apenas dois parâmetros $(m, n)$ são suficientes para representá-la, ou pelo menos para diferenciar uma de todas as outras. Para entender o algoritmo, vamos explorar um pouco melhor essa ideia, representar a reta apenas por $(m, n)$, ou seja, [transformar as coordenadas](https://www.ufrgs.br/lageo/calculos/coord_exp.html) de uma reta de $(x, y)$ para $(m, n)$.
 
 Abaixo temos um plano cartesiano com um ponto. Passando a animação, vemos várias retas que passam por esse ponto e suas respectivas equações.
 
