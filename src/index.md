@@ -8,7 +8,7 @@ Como dito anteriormente, o algoritmo recebe uma imagem em preto e branco. Mas, p
 
 ![](pontos.png)
 
-Vamos relembrar algumas propriedades basicas de retas e pontos no plano cartesiano.
+Vamos relembrar algumas propriedades basicas de retas e pontos no plano cartesiano, afinal a matemática desse algoritmo está diretamente ligada ao comportamento de retas e pontos.
 
 ??? CHECKPOINT
 Quantas retas podem passar por **um** ponto?
@@ -19,14 +19,18 @@ Se sua resposta foi $\infty$ retas, você acertou!
 :::
 ???
 
+Então, ao analisarmos a imagem inicialmente fornecida, se olharmos os pontos brancos separadamente, cada um desses pontos tem infinitas retas que passam por eles. Mas, nenhum pixel existe sozinho (em uma imagem normal, né...), por isso é sempre necessário analisar em um contexto maior.
+
+
 ??? CHECKPOINT
 Quantas retas podem passar por **dois** pontos?
 ::: Gabarito
-Se sua resposta foi uma reta, você acertou!
+Se sua resposta foi uma reta, você acertou! 
 
 ![](dois_pontos.png)
 :::
 ???
+
 
 Sabemos que a equação $y = mx + n$ é uma forma de representar uma reta. Assim, notamos que apenas dois parâmetros $(m, n)$ são suficientes para representá-la, ou pelo menos para diferenciar uma de todas as outras. Para entender o algoritmo, vamos explorar um pouco melhor essa ideia, representar a reta apenas por $(m, n)$, ou seja, [transformar as coordenadas](https://www.ufrgs.br/lageo/calculos/coord_exp.html) de uma reta de $(x, y)$ para $(m, n)$.
 
@@ -201,12 +205,31 @@ Quadrado 1
 
 Um ultimo detalhe matemático
 ---------
+Aparentemente, este algoritmo tem um funcionamento bom, mas temos um obstáculo.
 
-Mesmo assim, temos um obstáculo, ao analisar retas completamente verticais (com x constante), não existe coeficientes, fórmulas para prevermos determinadas coisas. Para isso, existem outros parâmetros para englobar todas possibilidades possíveis o $rho$ e o $theta$. Sua representação visual é:
+??? CHECKPOINT
+Observando a imagem abaixo, quais são os valores dos coeficientes (angular e linear) da reta apresentada? 
+
+![retareta](retareta.png)
+
+::: Gabarito
+
+Como não tem inclinação, essa reta não possui coeficientes angular e linear.
+
+:::
+???
+
+Ao analisar retas completamente verticais (com x constante), não existe coeficientes, fórmulas para prevermos determinadas coisas. Para isso, existem outros parâmetros para englobar todas possibilidades possíveis o $rho$ e o $theta$. Sua representação visual é:
 
 ![rhotheta](rhotheta.png)
 
 A equação de retas utilizando esses parâmetros fica: $\rho = xcos(\theta) + ysen(\theta)$ e ao utiliza-los ao invés de m e n, o plano secundário no qual os pontos são transformados em retas passa a depender de $\rho$ e $\theta$. Quanto implementados a transformada de hough em código, os parâmetros utilizados são $\rho$ e $\theta$.
+
+A representação visual desses pontos utilizando os parâmetros rho e theta é  a seguinte:
+
+![rhothetaespaco](rhoethetaespaco.png)
+
+Na primeira imagem é possível ver os pontos no plano $xy$, já na segunda imagem, esses pontos são convertidos em curvas, no qual o ponto que essas curvas se cruzam á a reta presente na imagem. A ideia geral desse formato é a mesma que foi passada nesse handout porém com outros parâmetros e, visto que, essa forma engloba até as retas verticais, é a utilizada no código.
 
 Existe uma biblioteca pronta dentro do OpenCV para a realização da transformada de hough, chamada ```python HoughLines()```, que tem como parâmetros não só o $\rho$ e o $\theta$ mas também um número inteiro que representa o número mínimo de votos para que uma reta seja de fato considerada uma reta, tornando possível o processo ser mais maleável a depender da imagem.
 
